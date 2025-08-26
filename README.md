@@ -37,3 +37,11 @@ netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=1433 con
 ## SSMS server name
 tcp:127.0.0.1,1433
 
+
+## backup database
+
+
+## restore database
+./sqlrestore.sh sql2 martesdb /mnt/c/sqlbackups/martesDB.bak
+
+
