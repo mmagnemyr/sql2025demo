@@ -25,3 +25,15 @@ $wslIp
 # Quick connectivity test
 Test-NetConnection $wslIp -Port 1433
 
+## SSMS Additional Connection Parameters
+Encrypt=True;TrustServerCertificate=True
+
+## make localhost work
+Run Admin PowerShell:
+$wslIp = wsl.exe sh -lc "ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
+netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=1433 connectaddress=$wslIp connectport=1433
+
+
+## SSMS server name
+tcp:127.0.0.1,1433
+
